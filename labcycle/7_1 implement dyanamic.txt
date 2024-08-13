@@ -1,0 +1,69 @@
+#include<stdio.h>
+#include<malloc.h>
+int *p,*c;
+int i;
+int firstalloc()
+{   
+	int m;
+	printf("\nEnter the locations:");
+	scanf("%d",&m);
+	p=(int *)malloc(sizeof(int));
+	for(i=0;i<m;i++)
+	{
+		printf("\nEnter p[%d]",i);
+		scanf("%d",&p[i]);
+	}
+	for(i=0;i<m;i++)
+	{
+		printf("%d \t",p[i]);
+	}
+}
+
+int secondcalloc()
+{   
+    int n;
+	printf("\n enter the no of locations:");
+	scanf("%d",&n);
+	c=(int *)calloc(sizeof(int),n);
+	for(i=0;i<n;i++)
+	{
+		printf("\nEnter c[%d]",i);
+		scanf("%d",&c[i]);
+	}
+	for(i=0;i<n;i++)
+	{
+		printf("%d \t",c[i]);
+	}
+}
+int thirdfree()
+{
+	free(p);
+	free(c);
+}
+int menu()
+{
+	int ch;
+	printf("\n malloc-1 \n calloc-2 \n free-3 \n exit-4 \n enter your choice:");
+	scanf("%d",&ch);
+	return ch;
+}
+int main()
+{
+	int ch;
+	for(ch=menu();ch!=5;ch=menu())
+    {
+    	switch(ch)
+    	{
+    	  case 1:
+		         firstalloc();
+				 break;
+		  case 2:
+		         secondcalloc();
+				 break;
+		  case 3:
+		         thirdfree();
+				 break;	
+		}
+	}
+	return 0;
+}

@@ -1,0 +1,55 @@
+#include <stdio.h>
+
+#define MAX_SIZE 100
+
+int queue[MAX_SIZE];
+int n = 0;  // Current size of the queue
+
+// Function to insert an item at the rear of the queue
+void enqueue(int item) {
+    // Check if the queue is full
+    if (n == MAX_SIZE) {
+        printf("ERROR: Queue is full\n");
+        return;
+    }
+    queue[n++] = item;
+}
+
+// Function to remove and return the item with the maximum priority
+int dequeue() {
+    int item;
+    // Check if the queue is empty
+    if (n == 0) {
+        printf("ERROR: Queue is empty\n");
+        return -999999; // or some other appropriate error value
+    }
+    int i, max = 0;
+    // Find the maximum priority item
+    for (i = 1; i < n; i++) {
+        if (queue[max] < queue[i]) {
+            max = i;
+        }
+    }
+    item = queue[max];
+
+    // Replace the max priority item with the last element
+    queue[max] = queue[n - 1];
+    n = n - 1;
+    return item;
+}
+
+int main() {
+    // Test the priority queue
+    enqueue(10);
+    enqueue(5);
+    enqueue(20);
+    enqueue(15);
+
+    printf("Dequeue: %d\n", dequeue()); // Should print 20
+    printf("Dequeue: %d\n", dequeue()); // Should print 15
+
+    enqueue(25);
+    printf("Dequeue: %d\n", dequeue()); // Should print 25
+
+    return 0;
+}

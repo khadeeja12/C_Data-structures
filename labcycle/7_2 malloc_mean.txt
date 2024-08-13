@@ -1,0 +1,23 @@
+#include<stdio.h>
+#include<malloc.h>
+int main()
+{
+	int m,sum=0,i,*p,mean;
+	printf("\nEnter the locations:");
+	scanf("%d",&m);
+	p=(int *)malloc(sizeof(int));
+	for(i=0;i<m;i++)
+	{
+		printf("\nEnter p[%d]",i);
+		scanf("%d",&p[i]);
+		sum=sum+p[i];
+	}
+	for(i=0;i<m;i++)
+	{
+		printf("%d \t",p[i]);
+	}
+	mean=sum/m;
+	printf("\n mean =%d",mean);
+	return 0;
+	
+}
